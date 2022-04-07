@@ -1,0 +1,46 @@
+<form *ngIf="userForm && badges" [formGroup]="userForm" class="p-3">
+    <div class="mb-3">
+        <label class="form-label">
+            Name <span *ngIf="isControllRequired('name')">*</span>
+        </label>
+        <div>
+            <input formControlName="name" class="form-control" name="name">
+        </div>
+        <div *ngIf="isControllInvalid('name')">
+            <div *ngIf="isControllRequiredAndTouched('name')">
+                Az érték kötelező
+            </div>
+            <div *ngIf="hasError('name','minlength')">
+                A beírt szöveg túl rövid
+            </div>
+            <div *ngIf="hasError('name','maxlength')">
+                A beírt szöveg túl hosszú
+            </div>
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">
+            Avatar url <span *ngIf="isControllRequired('image')">*</span>
+        </label>
+        <div>
+            <input formControlName="image" class="form-control" name="image" />
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <div *ngFor="let badge of badges" class="badge user-form-badge" (click)="toggleSelectedBadge(badge.id)" [class.selected]="isBadgeSelected(badge.id)">
+            {{badge.name}}
+        </div>
+    </div>
+
+
+    <div class="mb-3">
+        <button (click)="goback()" class="btn btn-secondary me-2">
+            Back
+        </button>
+        <button [disabled]="userForm.invalid" (click)="saveForm()" class="btn btn-primary">
+            Save
+        </button>
+    </div>
+</form>

@@ -1,0 +1,12 @@
+<div class="card p-3 w-50 m-auto mt-4">
+    <div class="py-2">
+        <button (click)="navigateToCreateUSer()" class="btn btn-primary">Create</button>
+    </div>
+
+    <div class="row">
+        <div *ngFor="let user of users" class="col-4">
+            <app-user-card [user]="user" [badges]="badges" (click)="navigateToEditUSer(user.id)" [user]="user" (removeBtnClicked)="removeUser(user)">
+            </app-user-card>
+        </div>
+    </div>
+</div>

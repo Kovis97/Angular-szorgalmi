@@ -1,0 +1,17 @@
+<h5>Home</h5>
+
+<div class="d-flex justify-content-center">
+    <div class="card p-4 counter-card">
+        <h1 class="text-center">Counter: {{ counter }} </h1>
+
+        <div class="d-flex justify-content-between">
+            <button (click)="increaseCounter()" class="btn btn-primary me-2">Increase +</button>
+            <button (click)="decreaseCounter()" class="btn btn-secondary me-2">Decrease -</button>
+
+            <button (click)="clearCounter()" class="btn btn-danger me-2">Clear</button>
+        </div>
+        <div style="margin-top: 1em;">
+            <input [(ngModel)]="counter" class="form-control" />
+        </div>
+    </div>
+</div>
