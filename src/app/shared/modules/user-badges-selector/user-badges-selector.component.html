@@ -1,0 +1,5 @@
+<div class="mb-3">
+    <div *ngFor="let badge of badges" class="badge user-badges-selector" (click)="toggleSelectedBadge(badge.id)" [class.selected]="isBadgeSelected(badge.id)">
+        {{badge.name}}
+    </div>
+</div>

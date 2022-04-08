@@ -17,40 +17,18 @@ export class UserFormComponent implements OnInit {
   @Input() user: User;
 
   userForm: FormGroup;
-  badges: Badge[];
 
-  selectBadges: { [key: string]: boolean } = {}
+  selectBadges: { [key: string]: boolean } = {};
 
 
   constructor(
     private formBuilder: FormBuilder,
     private userService: UserService,
-    private badgeService: BadgeService,
     private router: Router
   ) { }
 
   ngOnInit(): void {
     this.initForm();
-    this.getBadges();
-    this.initSelectedBadges();
-  }
-
-  initSelectedBadges() {
-    if (this.user && this.user.badges) {
-      for (const badge of this.user?.badges) {
-        this.selectBadges[badge.id] = true;
-      }
-    }
-  }
-
-  isBadgeSelected(badgeId: number):boolean {
-    return !!this.selectBadges[badgeId.toString()];
-  }
-
-  toggleSelectedBadge(badgeID: number):void {
-    const badgeIdStr = badgeID.toString();
-
-    this.selectBadges[badgeIdStr] = !this.selectBadges[badgeIdStr];
   }
 
   mapSelectedBadges() {
@@ -111,14 +89,6 @@ export class UserFormComponent implements OnInit {
     this.userForm = this.formBuilder.group({
       name: [this.user?.name, [Validators.required, Validators.minLength(3), Validators.maxLength(12)]],
       image: [this.user?.image, [Validators.required, Validators.minLength(3)]]
-    });
-  }
-
-  private getBadges() {
-    this.badgeService.getBadges().subscribe({
-      next: (badges: Badge[]) => {
-        this.badges = badges
-      }
     });
   }
 
