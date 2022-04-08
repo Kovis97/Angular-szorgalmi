@@ -1,9 +1,16 @@
 <div class="badges-container card p-3 m-auto mt-4">
     <div class="py-2">
         <button (click)="navigateToCreateBadge()" class="btn btn-primary">Create</button>
+        <div class="btn-group pull-right change-view">
+            <button class="btn btn-white" type="button" (click)="onDisplayModeChange(0)" [ngClass]="{'btn-primary active': displayMode === 0}">
+                Card
+            </button>
+            <button class="btn btn-white" type="button" (click)="onDisplayModeChange(1)" [ngClass]="{'btn-primary active': displayMode === 1}">
+                Table
+            </button>
+        </div>
     </div>
-    <div class="row">
-
+    <div [ngClass]="{'row' : displayMode == 0, 'table table-view': displayMode == 1}">
         <div *ngFor="let badge of badges" class="col-4 pb-2">
             <app-badge-card [badge]="badge" (click)="navigateToEditBadge(badge.id)" (removeBtnClicked)="removeBadge(badge)">
             </app-badge-card>

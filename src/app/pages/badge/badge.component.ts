@@ -10,11 +10,22 @@ import { BadgeService } from './service/badge.service';
 })
 export class BadgeComponent implements OnInit {
   badges: Badge[];
+  displayMode: number;
 
-  constructor(private badgeService: BadgeService, private router: Router) { }
+  constructor(private badgeService: BadgeService, private router: Router) {
+    this.displayMode = 1;
+  }
 
   ngOnInit(): void {
     this.getBadges();
+  }
+
+  onDisplayModeChange(mode: number): void {
+    this.displayMode = mode;
+  }
+
+  getDisplayMode():number {
+    return this.displayMode;
   }
 
   navigateToCreateBadge() {
