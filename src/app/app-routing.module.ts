@@ -8,6 +8,8 @@ import { UserCreateComponent } from './pages/user-create/user-create.component';
 import { UserEditComponent } from './pages/user-edit/user-edit.component';
 import { LoginComponent } from './pages/login/login.component';
 import { AuthGuard } from './shared/modules/auth/auth.guard';
+import { BadgeEditComponent } from './pages/badge-edit/badge-edit.component';
+import { BadgeCreateComponent } from './pages/badge-create/badge-create.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent},
@@ -16,6 +18,8 @@ const routes: Routes = [
   { path: 'user-create', component: UserCreateComponent, canActivate: [AuthGuard] },
   { path: 'user-edit/:id', component: UserEditComponent, canActivate: [AuthGuard] },
   { path: 'badges', component: BadgeComponent, canActivate: [AuthGuard] },
+  { path: 'badge-create', component: BadgeCreateComponent, canActivate: [AuthGuard] },
+  { path: 'badge-edit/:id', component: BadgeEditComponent, canActivate: [AuthGuard] },
   { path: '**', redirectTo: 'home' },
 
 ];

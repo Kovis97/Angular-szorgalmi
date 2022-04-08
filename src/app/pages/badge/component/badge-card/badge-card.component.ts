@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Badge } from '../../classes/badge';
 
 @Component({
@@ -9,9 +9,17 @@ import { Badge } from '../../classes/badge';
 export class BadgeCardComponent implements OnInit {
   @Input() badge: Badge;
 
+  @Output() removeBtnClicked: EventEmitter<void> = new EventEmitter<void>();
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  emitRemoveBtnClick(event: Event) {
+    event.stopPropagation();
+
+    this.removeBtnClicked.emit();
   }
 
 }
